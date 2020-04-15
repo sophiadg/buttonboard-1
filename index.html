@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<script type="text/javascript" src =  
-        "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js" > 
-        </script> 
 	<script src="js/board.js"></script>
 	<script src="js/howler.js"></script>
+	<script type="text/javascript" src =  
+        "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js" > 
+		</script> 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+		<!-- <script src="js/html2canvas.min.js"></script> -->
 	<script>
     	var atone = new Howl({src: ['sounds/atone.mp3']});
     	var glass = new Howl({src: ['sounds/glass.mp3']});
@@ -85,12 +88,19 @@
 		<div class="round-button" id="b64" onclick="buttclick(id)"></div>
 	</div>
 
+	<div class="preview-container">
+		<p><span id="demo">No image saved/loaded!</span></p>
+		<p><span id="demoarray">No data yet!</span></p>
+	</div>
+
 	<div class="controls-container" id="controls1">
 		<div class="button" id="submit" onclick="submit()">submit</div>			
 		<div class="button" id="clear" onclick="blankslate()">clear</div>
 		<div class="button" id="audio" onclick="togglesound()">sound off</div>
 	</div>
+
 	<div class="controls-container" id="controls2">
+		TESTING BELOW!! <br>
 		Select a demo:
 		<form>
 			<select id="demoselector">
@@ -100,7 +110,11 @@
 			</select>			
 		<div class="button" id="load" onclick="drawdemo()">Draw Demo!</div>
 	</div>
-
+	<div class="controls-container" id="controls3">
+		<!-- <div class="button" id="copy" onclick="copyboard()">Copy current board</div> -->
+		<div class="button" id="savepic" onclick="savepic()">Save Image</div>
+	</div>
 </div>	
+
 </body>
 </html>

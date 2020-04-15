@@ -31,11 +31,12 @@ function buttclick(id) {
 }
 
 function blankslate() {
+	log = {time: Date.now(), action: "clear", effect: "clear"}
+	console.log(log)
 	var bees=document.getElementsByClassName("round-button");
 	for (var i=0; i<bees.length; i++){
 		bees[i].style.backgroundColor="white";
-}
-	
+	}
 }
 
 function submit() {
@@ -55,6 +56,11 @@ function submit() {
 	}
 	var jsonpattern = JSON.stringify(pattern);
 	console.log("submitted pattern", jsonpattern);
+
+	// show on the side
+	document.getElementById("demo").innerHTML = "User Creation:";
+	document.getElementById("demoarray").innerHTML = jsonpattern;
+
 	pattern=[];
 }
 
@@ -78,10 +84,10 @@ function togglesound() {
 	console.log(log)
 }
 
-
 function drawdemo() {
+	// get selection from the form
 	picture = getSelectedDemo()
-	console.log("picture", picture)
+	// choose array
 	switch(picture) {
 		case "Rectangle":
 		  picturearray= [0,0,0,0,1,0,0,0,0,0,0,1,0,1,0,0,0,0,1,0,0,0,1,0,0,1,0,0,0,0,0,1,1,0,0,0,0,0,1,0,0,1,0,0,0,1,0,0,0,0,1,0,1,0,0,0,0,0,0,1,0,0,0,0]
@@ -93,9 +99,11 @@ function drawdemo() {
 			picturearray= Array(64)
 			for (i = 0; i < picturearray.length; i++){
 				picturearray[i] = Math.floor(Math.random() * 2)}
-			console.log(picturearray)
 	  }
-
+	// print array to web
+	document.getElementById("demo").innerHTML = picture;
+	document.getElementById("demoarray").innerHTML = JSON.stringify(picturearray);
+	// color the buttonboard
 	loadboard(picturearray)
 }
 
@@ -114,3 +122,26 @@ function loadboard(boardarray, pause=false) {
 		}
 	}
 }
+
+
+function savepic(){
+	//	html2canvas(document.querySelector("#savepic")).then(function(canvas) {
+		html2canvas(document.getElementById("grid-container"), {
+			letterRendering: 1, allowTaint: true, 
+			onrendered : function(canvas) {
+				document.body.appendChild(canvas);
+				// Get base64URL
+			//	 var base64URL = canvas.toDataURL('image/jpeg').replace('image/jpeg', 'image/octet-stream');
+			// AJAX request
+			//  $.ajax({
+			// 	url: 'ajaxfile.php',
+			// 	type: 'post',
+			// 	data: {image: base64URL},
+			// 	success: function(data){
+			// 	   console.log('Upload successfully');
+			// 	}
+			//  });
+	   }  
+	 })
+	}
+	
