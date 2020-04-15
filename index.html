@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript" src =  
+        "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js" > 
+        </script> 
+	<script src="js/board.js"></script>
+	<script src="js/howler.js"></script>
+	<script>
+    	var atone = new Howl({src: ['sounds/atone.mp3']});
+    	var glass = new Howl({src: ['sounds/glass.mp3']});
+    	var arrow = new Howl({src: ['sounds/arrow.mp3']});
+    	var blop = new Howl({src: ['sounds/blop.mp3']});
+	</script>
+	<link rel = "stylesheet" type ="text/css" href="css/board.css" />
+<title></title>
+</head>
+<body>
+
+<div id="wrapper">
+	<div class="grid-container">
+		<div class="round-button" id="b1" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b2" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b3" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b4" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b5" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b6" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b7" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b8" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b9" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b10" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b11" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b12" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b13" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b14" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b15" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b16" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b17" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b18" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b19" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b20" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b21" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b22" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b23" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b24" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b25" onclick="buttclick(id)"></div> 
+		<div class="round-button" id="b26" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b27" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b28" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b29" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b30" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b31" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b32" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b33" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b34" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b35" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b36" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b37" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b38" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b39" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b40" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b41" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b42" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b43" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b44" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b45" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b46" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b47" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b48" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b49" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b50" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b51" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b52" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b53" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b54" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b55" onclick="buttclick(id)"></div> 
+		<div class="round-button" id="b56" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b57" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b58" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b59" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b60" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b61" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b62" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b63" onclick="buttclick(id)"></div>
+		<div class="round-button" id="b64" onclick="buttclick(id)"></div>
+	</div>
+
+	<div class="controls-container" id="controls1">
+		<div class="button" id="submit" onclick="submit()">submit</div>			
+		<div class="button" id="clear" onclick="blankslate()">clear</div>
+		<div class="button" id="audio" onclick="togglesound()">sound off</div>
+	</div>
+	<div class="controls-container" id="controls2">
+		Select a demo:
+		<form>
+			<select id="demoselector">
+			  <option>Surprise me!</option>
+			  <option>Rectangle</option>
+			  <option>Heart</option>
+			</select>			
+		<div class="button" id="load" onclick="drawdemo()">Draw Demo!</div>
+	</div>
+
+</div>	
+</body>
+</html>
