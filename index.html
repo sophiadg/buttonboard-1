@@ -3,12 +3,9 @@
 <head>
 	<script src="js/board.js"></script>
 	<script src="js/howler.js"></script>
-	<script type="text/javascript" src =  
-        "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js" > 
-		</script> 
+	<script src = "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script> 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
-		<!-- <script src="js/html2canvas.min.js"></script> -->
 	<script>
     	var atone = new Howl({src: ['sounds/atone.mp3']});
     	var glass = new Howl({src: ['sounds/glass.mp3']});
@@ -21,7 +18,7 @@
 <body>
 
 <div id="wrapper">
-	<div class="grid-container">
+	<div class="grid-container" id="theboard">
 		<div class="round-button" id="b1" onclick="buttclick(id)"></div>
 		<div class="round-button" id="b2" onclick="buttclick(id)"></div>
 		<div class="round-button" id="b3" onclick="buttclick(id)"></div>
@@ -88,9 +85,10 @@
 		<div class="round-button" id="b64" onclick="buttclick(id)"></div>
 	</div>
 
-	<div class="preview-container">
+	<div class="preview-container" id="previews">
 		<p><span id="demo">No image saved/loaded!</span></p>
 		<p><span id="demoarray">No data yet!</span></p>
+		<div id=previewimg></div>
 	</div>
 
 	<div class="controls-container" id="controls1">
@@ -112,7 +110,7 @@
 	</div>
 	<div class="controls-container" id="controls3">
 		<!-- <div class="button" id="copy" onclick="copyboard()">Copy current board</div> -->
-		<div class="button" id="savepic" onclick="savepic()">Save Image</div>
+		<div class="button" id="savepic" onclick="savepic()">Download Image</div>
 	</div>
 </div>	
 

@@ -57,10 +57,13 @@ function submit() {
 	var jsonpattern = JSON.stringify(pattern);
 	console.log("submitted pattern", jsonpattern);
 
-	// show on the side
+	// update preview
 	document.getElementById("demo").innerHTML = "User Creation:";
 	document.getElementById("demoarray").innerHTML = jsonpattern;
 
+	savepic()
+
+	// reset for new submission
 	pattern=[];
 }
 
@@ -100,7 +103,7 @@ function drawdemo() {
 			for (i = 0; i < picturearray.length; i++){
 				picturearray[i] = Math.floor(Math.random() * 2)}
 	  }
-	// print array to web
+	// print array to preview section
 	document.getElementById("demo").innerHTML = picture;
 	document.getElementById("demoarray").innerHTML = JSON.stringify(picturearray);
 	// color the buttonboard
@@ -125,11 +128,29 @@ function loadboard(boardarray, pause=false) {
 
 
 function savepic(){
-	//	html2canvas(document.querySelector("#savepic")).then(function(canvas) {
-		html2canvas(document.getElementById("grid-container"), {
-			letterRendering: 1, allowTaint: true, 
-			onrendered : function(canvas) {
-				document.body.appendChild(canvas);
+	log = {time: Date.now(), action: "savepic", effect: "savepic"}
+	console.log(log)
+
+	// DOMTOIMAGE METHOD
+	var node = document.getElementById('theboard');
+	var previewsite = document.getElementById('previews');
+	var oldimg = document.getElementById('previewimg');
+    domtoimage.toPng(node).then(function (dataUrl) {
+        var img = new Image();
+		img.src = dataUrl;
+		img.id = "previewimg";
+		img.width= 300;
+		previewsite.replaceChild(img, previewimg)
+//        document.getElementById('previewimg').replaceChild(img);
+    }).catch(function (error) {
+        console.error('oops, something went wrong!', error);
+	});
+
+	// print array to preview section
+	document.getElementById("demo").innerHTML = "Image saved!";
+	document.getElementById("demoarray").innerHTML = JSON.stringify(picturearray);
+	
+	
 				// Get base64URL
 			//	 var base64URL = canvas.toDataURL('image/jpeg').replace('image/jpeg', 'image/octet-stream');
 			// AJAX request
@@ -141,7 +162,4 @@ function savepic(){
 			// 	   console.log('Upload successfully');
 			// 	}
 			//  });
-	   }  
-	 })
-	}
-	
+	   }

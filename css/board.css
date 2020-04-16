@@ -44,6 +44,10 @@
 #controls2{
   grid-row: 3;
 }
+#controls3{
+  grid-row: 4;
+}
+
 .button {
   display: inline-grid;
   justify-items: center;
@@ -56,9 +60,15 @@
   color: #000000;
   font-family:Verdana;
   font-weight:bold;
-  text-decoration:none;
+  cursor: pointer;
 }
 
 #submit {
   background: #83c387;
+}
+
+/* Preview layout */
+.preview-container {
+  grid-column: 2;
+  padding: 20px;
 }
