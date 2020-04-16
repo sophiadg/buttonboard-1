@@ -9,41 +9,33 @@ actions = [];
 soundon = true;
 currentboard = [];
 
+
+
 function buttclick(id) {
 	// Upon clicking a button:
-	// - log event
 	// - paint button blue or white
-	// - play sound
-	log = {
-		time: Date.now(),
-		action: id,
-		effect: ''
-	}
+	// - return the effect [color, sound]
 	if (document.getElementById(id).style.backgroundColor != "blue") {
 		document.getElementById(id).style.backgroundColor = "blue";
 		if (_.contains(atonelist, id)) {
-			atone.play(), log.effect = "atone"
+			atone.play(), effect = ['on','atone']
 		} else if (_.contains(glasslist, id)) {
-			glass.play(), log.effect = "glass"
+			glass.play(), effect = ['on','glass']
 		} else if (_.contains(arrowlist, id)) {
-			arrow.play(), log.effect = "arrow"
+			arrow.play(), effect = ['on','arrow']
 		} else {
-			blop.play(), log.effect = "blop"
+			blop.play(), effect = ['on','blop']
 		}
 	} else {
 		document.getElementById(id).style.backgroundColor = "white";
+		effect = ['off', 'nosound'];
 	}
-	console.log(log)
+
+	return effect
 }
 
 function blankslate() {
 	// Refreshes the board and turns all buttons white
-	log = {
-		time: Date.now(),
-		action: "clear",
-		effect: "clear"
-	}
-	console.log(log)
 	var bees = document.getElementsByClassName("round-button");
 	for (var i = 0; i < bees.length; i++) {
 		bees[i].style.backgroundColor = "white";
@@ -53,7 +45,6 @@ function blankslate() {
 function board2array() {
 	// converts list of html button elements into array of 0 and 1
 	var bees = document.getElementsByClassName("round-button");
-
 	var pattern = [];
 	for (var i = 0; i < bees.length; i++) {
 		if (bees[i].style.backgroundColor == "blue") {
@@ -65,24 +56,20 @@ function board2array() {
 	return pattern
 }
 
-function submit() {
+function submitboard() {
 	// submit html board as numeric array and updates preview
-	log = {
-		time: Date.now(),
-		action: "submit",
-		effect: "submit"
-	}
-	console.log(log)
-	
+	// and returns the array
+
 	// get current board as array
 	var pattern = board2array();
-	var jsonpattern = JSON.stringify(pattern);
-	console.log("submitted pattern", jsonpattern);
-
+	var jsonpattern = JSON.stringify(pattern);	
 	// update preview
 	document.getElementById("demo").innerHTML = "User Creation:";
 	document.getElementById("demoarray").innerHTML = jsonpattern;
 	drawpreview();
+
+	// return the submitted array
+	return jsonpattern
 }
 
 function togglesound() {
@@ -96,19 +83,15 @@ function togglesound() {
 		Howler.mute(false); // unmute all howlers
 		soundon = true;
 	}
-	log = {
-		time: Date.now(),
-		action: "sound",
-		effect: soundon ? "soundon" : "soundoff"
-	}
-	console.log(log)
+	return soundon
 }
 
 function drawdemo() {
 	// get selection from the form
-	picture = getSelectedDemo()
+	var demo = document.getElementById("demoselector")
+	picturelabel = demo.options[demo.selectedIndex].text
 	// choose array
-	switch (picture) {
+	switch (picturelabel) {
 		case "Rectangle":
 			picturearray = [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0]
 			break;
@@ -121,16 +104,16 @@ function drawdemo() {
 				picturearray[i] = Math.floor(Math.random() * 2)
 			}
 	}
+	outcome = JSON.stringify(picturearray);
+	//console.log(outcome);
+	
 	// print array to preview section
-	document.getElementById("demo").innerHTML = picture;
-	document.getElementById("demoarray").innerHTML = JSON.stringify(picturearray);
+	document.getElementById("demo").innerHTML = picturelabel;
+	document.getElementById("demoarray").innerHTML = outcome;
 	// color the buttonboard
-	loadboard(picturearray)
-}
+	loadboard(picturearray);
 
-function getSelectedDemo() {
-	var demo = document.getElementById("demoselector")
-	return demo.options[demo.selectedIndex].text
+	return outcome
 }
 
 function loadboard(boardarray, pause = false) {
@@ -175,7 +158,7 @@ function drawpreview() {
 	});
 
 	// print array to preview section
-	document.getElementById("demo").innerHTML = "Image submitted! See below:";
+	document.getElementById("demo").innerHTML = "Image submitted! Right click to save:";
 	document.getElementById("demoarray").innerHTML = board2array();
 
 }
