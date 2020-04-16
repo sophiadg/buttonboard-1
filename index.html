@@ -141,6 +141,11 @@
 			<div class="button" id="submit">submit</div>
 			<div class="button" id="clear">clear</div>
 			<div class="button" id="audio">sound off</div>
+			<form id="endgame" name="frm" action="intro.php" method="post" onsubmit="return validateForm()">
+				<input type="text" name="UID" hidden>
+				<input type="text" name="debrief" hidden>
+				<input class="button" type="submit" value="I'm done playing">
+			</form>
 		</div>
 
 		<!-- extra CONTROL BUTTONS -->
@@ -153,7 +158,7 @@
 					<option>Rectangle</option>
 					<option>Heart</option>
 				</select>
-				<input type="submit" value="Draw Demo">
+				<input class="button" type="submit" value="Draw Demo">
 			</form>
 			<!-- <div class="button" id="demo" onclick="drawdemo()">Draw Demo!</div> -->
 		</div>
@@ -161,4 +166,13 @@
 
 </body>
 
+<!-- SCRIPT TO VALIDATE ENDGAME FORM -->
+<script>
+	function validateForm() {
+	   var u_id = "<?php global $UID; echo $UID; ?>";
+	   document.forms["frm"]["UID"].value = u_id;
+	   document.forms["frm"]["debrief"].value = "true";
+	   return true;
+	}
+ </script>
 </html>

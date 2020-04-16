@@ -1,4 +1,4 @@
-/* Page layout */
+/* Test Page layout */
 #wrapper {
   display: grid;
   grid-template-columns: auto 350px;
@@ -34,7 +34,7 @@
   box-shadow: 0 0 3px gray;
 }
 
-/* Controls layout */
+/* Board Controls layout */
 .controls-container {
   grid-column: 1;
   padding: 20px;
@@ -71,7 +71,7 @@
   background: #83c387;
 }
 
-/* Preview layout */
+/* Board Preview layout */
 .preview-container {
   grid-column: 2;
   padding: 20px;
