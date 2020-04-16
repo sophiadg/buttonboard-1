@@ -42,15 +42,16 @@
 				console.log(log)
 			})
 			$("#submit").click(function() {
-				log = log = {time: Date.now(), action: "submit"}
+				log = {time: Date.now(), action: "submit"}
 				log.effect = submitboard();
 				console.log(log)
 			})
-			$("#demo").click(function(){
-				alert("blah")
-				// TODO: why doesn't work for drawdemo?
-				// might have to use jquery form http://jquery.malsup.com/form/
-			})
+			$( "#demoform" ).submit(function( event ) {
+				log = {time: Date.now(), action: "demo"}
+				log.effect = drawdemo();
+				console.log(log);
+				event.preventDefault();
+			});
 		});
 	</script>
 	<link rel="stylesheet" type="text/css" href="css/board.css" />
@@ -146,13 +147,15 @@
 		<div class="controls-container" id="controls2">
 			TESTING BELOW!! <br>
 			Select a demo:
-			<form>
+			<form id="demoform">
 				<select id="demoselector">
 					<option>Surprise me!</option>
 					<option>Rectangle</option>
 					<option>Heart</option>
 				</select>
-			<div class="button" id="demo" onclick="drawdemo()">Draw Demo!</div>
+				<input type="submit" value="Draw Demo">
+			</form>
+			<!-- <div class="button" id="demo" onclick="drawdemo()">Draw Demo!</div> -->
 		</div>
 	</div>
 
