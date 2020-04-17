@@ -29,3 +29,60 @@
     text-align: center;
     font-size: 70%;
 }
+
+.button {
+    justify-items: center;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    margin: 10px;
+    border: 2px solid #000000;
+    text-align: center;
+    color: #000000;
+    font-family: Verdana;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+/****************************/
+/* RATE THIS ARTICLE Styles	*/
+/****************************/
+#ratingtable{
+	width: 800px;
+}
+
+#ratingtable fieldset{
+	padding: 30px 48px 50px 48px;		/**/
+}
+
+#ratingtable legend{
+	margin: 0 0 0 -2.5em;		/**/
+}
+
+form#ratingtable label{
+	display: inline;
+	font-weight: bold;
+}
+
+#ratingtable table{
+	margin: 0;
+	border-collapse: collapse;
+}
+
+#ratingtable th{
+	padding: 4px 5px 2px 5px;
+	text-align: center;
+	border: 1px solid #AAA;
+	background-color: #DDD;
+}
+
+#ratingtable td{
+	padding: 6px 5px 6px 5px;
+	text-align: center;
+	border: 1px solid #AAA;
+}
+
+#ratingtable .colQuestion{
+	width: 350px;
+	text-align: left;
+}

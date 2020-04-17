@@ -62,7 +62,7 @@ scientists in the MIT Department of Brain and Cognitive Science.</p>
         <form name="frm" action="instructions.php" method="post" onsubmit="return validateForm()">
             <input type="text" name="UID" hidden>
             <input type="text" name="instructions" hidden>
-            <input type="submit" value="I agree">
+            <input class="button" type="submit" value="I agree">
         </form>
 
     </div>

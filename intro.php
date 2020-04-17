@@ -61,7 +61,7 @@
 
       <form name="frm" action="consent.php" method="post" onsubmit="return validateForm()">
          <input type="text" name="UID" hidden>
-         <input type="text" name="consent" hidden><input type="submit" value="Start" />
+         <input class="button" type="text" name="consent" hidden><input type="submit" value="Start" />
       </form>
    <div class="footer"> This is a footer </div>
 

@@ -51,7 +51,7 @@
 
       <form name="frm" action="index.html" method="post" onsubmit="return validateForm()">
          <input type="text" name="UID" hidden>
-         <input type="text" name="begin-task" hidden><input type="submit" value="Begin task"/>
+         <input class="button" type="text" name="begin-task" hidden><input type="submit" value="Begin task"/>
       </form>
    <div class="footer"> This is a footer </div>
 
