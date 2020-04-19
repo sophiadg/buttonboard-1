@@ -9,8 +9,6 @@ actions = [];
 soundon = true;
 currentboard = [];
 
-
-
 function buttclick(id) {
 	// Upon clicking a button:
 	// - paint button blue or white
@@ -18,17 +16,21 @@ function buttclick(id) {
 	if (document.getElementById(id).style.backgroundColor != "blue") {
 		document.getElementById(id).style.backgroundColor = "blue";
 		if (_.contains(atonelist, id)) {
-			atone.play(), effect = ['on','atone']
+			atone.play();
+			effect = soundon ? "on-atone" : "on-nosound"
 		} else if (_.contains(glasslist, id)) {
-			glass.play(), effect = ['on','glass']
+			glass.play();
+			effect = soundon ? "on-glass" : "on-nosound"
 		} else if (_.contains(arrowlist, id)) {
-			arrow.play(), effect = ['on','arrow']
+			arrow.play();
+			effect = soundon ? "on-arrow" : "on-nosound"
 		} else {
-			blop.play(), effect = ['on','blop']
+			blop.play();
+			effect = soundon ? "on-blop" : "on-nosound"
 		}
 	} else {
 		document.getElementById(id).style.backgroundColor = "white";
-		effect = ['off', 'nosound'];
+		effect = "off"
 	}
 
 	return effect
@@ -56,18 +58,10 @@ function board2array() {
 	return pattern
 }
 
-function submitboard() {
-	// submit html board as numeric array and updates preview
-	// and returns the array
-
+function getboardjson() {
 	// get current board as array
 	var pattern = board2array();
-	var jsonpattern = JSON.stringify(pattern);	
-	// update preview
-	document.getElementById("demo").innerHTML = "User Creation:";
-	document.getElementById("demoarray").innerHTML = jsonpattern;
-	drawpreview();
-
+	var jsonpattern = JSON.stringify(pattern);
 	// return the submitted array
 	return jsonpattern
 }
@@ -106,7 +100,7 @@ function drawdemo() {
 	}
 	outcome = JSON.stringify(picturearray);
 	//console.log(outcome);
-	
+
 	// print array to preview section
 	document.getElementById("demo").innerHTML = picturelabel;
 	document.getElementById("demoarray").innerHTML = outcome;
@@ -142,23 +136,24 @@ function drawpreview() {
 		img.id = "previewimg";
 		img.width = 300;
 		// show image on website
+		document.getElementById("demo").innerHTML = "Image submitted! Right click to download:";
+		//document.getElementById("demoarray").innerHTML = board2array();
 		previewsite.replaceChild(img, previewimg);
-		// TODO: UPLOAD IMAGE TO SERVER
-		//  $.ajax({
-		// 	url: 'ajaxfile.php',
-		// 	type: 'post',
-		// 	data: {image: img},
-		// 	success: function(data){
-		// 	   console.log('Upload successful');
-		// 	}
-		//  });
 
 	}).catch(function (error) {
 		console.error('oops, something went wrong!', error);
 	});
 
-	// print array to preview section
-	document.getElementById("demo").innerHTML = "Image submitted! Right click to save:";
-	document.getElementById("demoarray").innerHTML = board2array();
+}
+
+
+
+checkDemographics: function() {
+	this.demographics.age = $("#age").val();
+	if (!this.demographics.age) {
+		return alert("Please answer all questions"),
+		!1;
+	}
+	$demographics.
 
 }

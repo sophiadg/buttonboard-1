@@ -23,31 +23,56 @@
 
 		// JQUERY
 		// TODO: convert console.log into AJAX server calls
-		$(document).ready(function () {
-			$(".round-button").click(function () {
-				log = {time: Date.now()}
+		$(document).ready(function() {
+			$(".round-button").click(function() {
+				log = {
+					time: Date.now()
+				}
 				var buttid = $(this).attr('id');
 				log.action = buttid;
-				log.effect=buttclick(buttid);
+				log.effect = buttclick(buttid);
 				console.log(log)
 			});
 			$("#clear").click(function() {
-				log = {time: Date.now(), action: "clear", effect: "clear board"}
+				log = {
+					time: Date.now(),
+					action: "clear",
+					effect: "clear"
+				}
 				console.log(log)
 				blankslate()
 			})
 			$("#audio").click(function() {
-				log = {time: Date.now(), action: "toggle sound"}
-				log.effect= togglesound() ? "soundon" : "soundoff";
+				log = {
+					time: Date.now(),
+					action: "toggle sound"
+				}
+				log.effect = togglesound() ? "soundon" : "soundoff";
 				console.log(log)
 			})
 			$("#submit").click(function() {
-				log = {time: Date.now(), action: "submit"}
-				log.effect = submitboard();
+				log = {
+					time: Date.now(),
+					action: "submit"
+				}
+				log.effect = getboardjson();
+				drawpreview();
 				console.log(log)
+				// TODO: UPLOAD IMAGE TO SERVER
+				//  $.ajax({
+				// 	url: 'ajaxfile.php',
+				// 	type: 'post',
+				// 	data: {image: img, array: jsonpattern},
+				// 	success: function(data){
+				// 	   console.log('Upload successful');
+				// 	}
+				//  });
 			})
-			$( "#demoform" ).submit(function( event ) {
-				log = {time: Date.now(), action: "demo"}
+			$("#demoform").submit(function(event) {
+				log = {
+					time: Date.now(),
+					action: "demo"
+				}
 				log.effect = drawdemo();
 				console.log(log);
 				event.preventDefault();
@@ -131,9 +156,9 @@
 
 		<!-- SPACE FOR PREVIEWS -->
 		<div class="preview-container" id="previews">
-			<p><span id="demo">No image saved/loaded!</span></p>
-			<p><span id="demoarray">No data yet!</span></p>
-			<div id=previewimg></div>
+			<p><span id="demo"> </span></p>
+			<p><span id="demoarray"> </span></p>
+			<div id=previewimg> </div>
 		</div>
 
 		<!-- CONTROL BUTTONS -->
@@ -141,16 +166,16 @@
 			<div class="button" id="submit">submit</div>
 			<div class="button" id="clear">clear</div>
 			<div class="button" id="audio">sound off</div>
+		</div>
+
+		<!-- extra CONTROL BUTTONS -->
+		<div class="controls-container" id="controls2">
 			<form id="endgame" name="frm" action="debrief.php" method="post" onsubmit="return validateForm()">
 				<input type="text" name="UID" hidden>
 				<input type="text" name="debrief" hidden>
 				<input class="button" type="submit" value="I'm done playing">
 			</form>
-		</div>
-
-		<!-- extra CONTROL BUTTONS -->
-		<div class="controls-container" id="controls2">
-			TESTING BELOW!! <br>
+			<!-- TESTING BELOW!! <br>
 			Select a demo:
 			<form id="demoform">
 				<select id="demoselector">
@@ -159,8 +184,7 @@
 					<option>Heart</option>
 				</select>
 				<input class="button" type="submit" value="Draw Demo">
-			</form>
-			<!-- <div class="button" id="demo" onclick="drawdemo()">Draw Demo!</div> -->
+			</form> -->
 		</div>
 	</div>
 
@@ -169,10 +193,12 @@
 <!-- SCRIPT TO VALIDATE ENDGAME FORM -->
 <script>
 	function validateForm() {
-	   var u_id = "<?php global $UID; echo $UID; ?>";
-	   document.forms["frm"]["UID"].value = u_id;
-	   document.forms["frm"]["debrief"].value = "true";
-	   return true;
+		var u_id = "<?php global $UID;
+					echo $UID; ?>";
+		document.forms["frm"]["UID"].value = u_id;
+		document.forms["frm"]["debrief"].value = "true";
+		return true;
 	}
- </script>
+</script>
+
 </html>

@@ -1,7 +1,7 @@
 /* Test Page layout */
 #wrapper {
   display: grid;
-  grid-template-columns: auto 350px;
+  grid-template-columns: 650px 350px;
   grid-template-rows: auto auto auto;
   grid-gap: 0px;
   background-color: "white";
@@ -54,7 +54,7 @@
 
 .button {
   display: inline-grid;
-  justify-items: center;
+  /* justify-items: center; */
   width: auto;
   height: auto;
   padding: 10px;
@@ -65,6 +65,7 @@
   font-family: Verdana;
   font-weight: bold;
   cursor: pointer;
+  font-size: medium;
 }
 
 #submit {
