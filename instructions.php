@@ -49,7 +49,7 @@
       <p>That's it! When you're ready, click "Begin task" to get started. Have fun!</p>
       <br><br>
 
-      <form name="frm" action="index.html" method="post" onsubmit="return validateForm()">
+      <form name="frm" action="task.php" method="post" onsubmit="return validateForm()">
          <input type="text" name="UID" hidden>
          <input class="button" type="text" name="begin-task" hidden><input type="submit" value="Begin task"/>
       </form>
